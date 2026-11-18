@@ -43,7 +43,7 @@ for m in _re.finditer(r'<(/?)div\b',t[x:]):
     if d==0: y=x+m.end()+t[x+m.end():].find('>')+1;break
 t=t[:x]+t[y:]
 old='Успешно испытан на действующих газораспределительных сетях; допущен к применению'
-assert t.count(old)==1; t=t.replace(old,'Успешно испытан на ПАО «Газпром» и допущен к применению')
+assert t.count(old)==1; t=t.replace(old,'Успешно испытан на газораспределительных сетях ПАО «Газпром» и допущен к применению')
 css='''<style id="am-catalog">
 .am-cat-h{width:100%;margin:34px 15px 6px}
 .am-cat-h .elementor-heading-title{font-family:"Russo One",Sans-serif;font-size:26px;font-weight:500;text-transform:uppercase;color:var(--e-global-color-75ee670);border-bottom:2px solid #c8102e;padding-bottom:8px}
