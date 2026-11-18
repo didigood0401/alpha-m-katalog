@@ -17,10 +17,10 @@ G=[('Нефтепродукты',[
  ('Toluene-from-xtal-3D-balls.png','Толуол нефтяной','растворитель, ГОСТ 14710-78'),
  ('uvd.png','Эфир метил-трет-бутиловый (МТБЭ)','марка А')]),
  ('Углеводородное сырьё',[
- ('condensat.png','Конденсат газовый стабильный','ГОСТ Р 54389-2011: 1 группа - Сосногорский ГПЗ, Сургутский ЗСК; 2 группа - Астраханский ГПЗ'),
+ ('condensat.png','Конденсат газовый стабильный','Сосногорский ГПЗ<br>Сургутский ЗСК<br>Астраханский ГПЗ'),
  ('gasoline.png','Бензин газовый стабильный БГС',''),
  ('uvd.png','Фракция изопентановая','марка А'),
- ('uvd.png','Пентан-гексановая фракция','Амурский ГПЗ, Оренбургский ГЗ'),
+ ('uvd.png','Пентан-гексановая фракция','Амурский ГПЗ<br>Оренбургский ГЗ'),
  ('condensat.png','Дистиллят газового конденсата',''),
  ('absorb.png','Абсорбент олигомеризат',''),
  ('uvd.png','Широкая фракция лёгких углеводородов ШФЛУ',''),
@@ -36,6 +36,14 @@ a=t.find('<div class="elementor-element elementor-element-65719ad')
 b=t.find('<section class="elementor-section elementor-inner-section elementor-element elementor-element-71aa9d2')
 assert a>0 and b>a
 t=t[:a]+new+t[b:]
+import re as _re
+x=t.find('<div class="elementor-element elementor-element-65d8420');d=0
+for m in _re.finditer(r'<(/?)div\b',t[x:]):
+    d+= -1 if m.group(1) else 1
+    if d==0: y=x+m.end()+t[x+m.end():].find('>')+1;break
+t=t[:x]+t[y:]
+old='Успешно испытан на действующих газораспределительных сетях; допущен к применению'
+assert t.count(old)==1; t=t.replace(old,'Успешно испытан на ПАО «Газпром» и допущен к применению')
 css='''<style id="am-catalog">
 .am-cat-h{width:100%;margin:34px 15px 6px}
 .am-cat-h .elementor-heading-title{font-family:"Russo One",Sans-serif;font-size:26px;font-weight:500;text-transform:uppercase;color:var(--e-global-color-75ee670);border-bottom:2px solid #c8102e;padding-bottom:8px}
